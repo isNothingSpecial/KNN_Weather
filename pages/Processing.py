@@ -11,23 +11,24 @@ df = pd.read_csv('finaldata.csv')
 st.title(''' PENGOLAHAN DATA LAPORAN CUACA DI SEATTLE DENGAN ALGORITMA KNN ''')
 st.write('Prediksi Data Baru')
 
-st.number_input ("Precipation")
+input_precipation = st.number_input ("Precipation")
 #min_value=df('precipation').min()
 #max_value=df('precipation').max()
 
-st.number_input ("Minimum Temperature")
+input_min_temp = st.number_input ("Minimum Temperature")
 #min_value=df('precipation').min()
 #max_value=df('precipation').max()
 
-st.number_input ("Maximum Temperature")
+input_max_temp = st.number_input ("Maximum Temperature")
 #min_value=df('precipation').min()
 #max_value=df('precipation').max()
 
-st.number_input ("Wind Velocity")
+input_wind = st.number_input ("Wind Velocity")
 #min_value=df('precipation').min()
 #max_value=df('precipation').max()
 
 st.button("Predict")
+
 
 X = df.iloc[:, :-1]
 y = df['weather']
@@ -38,5 +39,30 @@ knn = KNeighborsClassifier(n_neighbors=5)
 knn.fit(X_train, y_train)
 y_pred = knn.predict(X_test)
 
-
-st.subheader("Prediction : ")
+if Predict:
+    if input_precipation != str(0.00) and input_min_temp != str(0.00) and input_max_temp != str(0.00) and input_wind != str(0.00):
+        precipation = float(input_precipation)
+        min_temp = float(input_min_temp)
+        max_temp = float(input_max_temp)
+        wind = float(input_wind)
+        prediction = knn.predict([[precipation,min_temp,max_temp,wind]])[0]
+        result = str(prediction)
+        if result =='Drizzle':
+            st.subheader(f"Prediction : {result}")
+            st.write('Cuaca sedang Gerimis')
+        elif result =='Rain':
+            st.subheader(f"Prediction : {result}")
+            st.write('Cuaca sedang Hujan')
+        elif result =='Sun':
+            st.subheader(f"Prediction : {result}")
+            st.write('Cuaca sedang Cerah')
+        elif result =='Snow':
+            st.subheader(f"Prediction : {result}")
+            st.write('Cuaca sedang Bersalju')
+        elif result =='Fog':
+            st.subheader(f"Prediction : {result}")
+            st.write('Cuaca sedang Berkabut')
+    else:
+        result = "-"
+else :
+    result = "Please complete form above!"
