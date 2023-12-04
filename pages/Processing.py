@@ -27,7 +27,7 @@ input_wind = st.number_input ("Wind Velocity")
 #min_value=df('precipation').min()
 #max_value=df('precipation').max()
 
-st.button("Predict")
+Predict = st.button("Predict")
 
 
 X = df.iloc[:, :-1]
