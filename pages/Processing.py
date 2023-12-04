@@ -15,11 +15,11 @@ input_precipation = st.number_input ("Precipation")
 #min_value=df('precipation').min()
 #max_value=df('precipation').max()
 
-input_min_temp = st.number_input ("Minimum Temperature")
+input_max_temp = st.number_input ("Maximum Temperature")
 #min_value=df('precipation').min()
 #max_value=df('precipation').max()
 
-input_max_temp = st.number_input ("Maximum Temperature")
+input_min_temp = st.number_input ("Minimum Temperature")
 #min_value=df('precipation').min()
 #max_value=df('precipation').max()
 
@@ -41,26 +41,26 @@ y_pred = knn.predict(X_test)
 Predict = st.button("Predict")
         
 if Predict:
-    if input_precipation != str(0.00) and input_min_temp != str(0.00) and input_max_temp != str(0.00) and input_wind != str(0.00):
+    if input_precipation != str(0.00) and input_max_temp != str(0.00) and input_min_temp != str(0.00) and input_wind != str(0.00):
         precipation = float(input_precipation)
-        min_temp = float(input_min_temp)
         max_temp = float(input_max_temp)
+        min_temp = float(input_min_temp)
         wind = float(input_wind)
         prediction = knn.predict([[precipation,min_temp,max_temp,wind]])[0]
         result = str(prediction)
-        if result =='0':
+        if result =='drizzle':
             st.subheader(f"Prediction : {result}")
             st.write('Cuaca sedang Gerimis')
-        elif result =='1':
+        elif result =='rain':
             st.subheader(f"Prediction : {result}")
             st.write('Cuaca sedang Hujan')
-        elif result =='2':
+        elif result =='sun':
             st.subheader(f"Prediction : {result}")
             st.write('Cuaca sedang Cerah')
-        elif result =='3':
+        elif result =='snow':
             st.subheader(f"Prediction : {result}")
             st.write('Cuaca sedang Bersalju')
-        elif result =='4':
+        elif result =='fog':
             st.subheader(f"Prediction : {result}")
             st.write('Cuaca sedang Berkabut')
     else:
