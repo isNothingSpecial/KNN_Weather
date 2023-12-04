@@ -39,13 +39,6 @@ knn.fit(X_train,y_train)
 y_pred = knn.predict(X_test)
 
 Predict = st.button("Predict")
-    if input_precipation != str(0.00) and input_min_temp != str(0.00) and input_max_temp != str(0.00) and input_wind != str(0.00):
-        precipation = float(input_precipation)
-        min_temp = float(input_min_temp)
-        max_temp = float(input_max_temp)
-        wind = float(input_wind)
-        prediction = knn.predict([[precipation,min_temp,max_temp,wind]])[0]
-        result = str(prediction)
         
 if Predict:
     if input_precipation != str(0.00) and input_min_temp != str(0.00) and input_max_temp != str(0.00) and input_wind != str(0.00):
