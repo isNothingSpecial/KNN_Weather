@@ -47,19 +47,19 @@ if Predict:
         wind = float(input_wind)
         prediction = knn.predict([[precipation,min_temp,max_temp,wind]])[0]
         result = str(prediction)
-        if result =='Drizzle':
+        if result =='0':
             st.subheader(f"Prediction : {result}")
             st.write('Cuaca sedang Gerimis')
-        elif result =='Rain':
+        elif result =='1':
             st.subheader(f"Prediction : {result}")
             st.write('Cuaca sedang Hujan')
-        elif result =='Sun':
+        elif result =='2':
             st.subheader(f"Prediction : {result}")
             st.write('Cuaca sedang Cerah')
-        elif result =='Snow':
+        elif result =='3':
             st.subheader(f"Prediction : {result}")
             st.write('Cuaca sedang Bersalju')
-        elif result =='Fog':
+        elif result =='4':
             st.subheader(f"Prediction : {result}")
             st.write('Cuaca sedang Berkabut')
     else:
